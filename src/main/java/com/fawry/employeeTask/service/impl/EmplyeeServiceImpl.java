@@ -50,7 +50,7 @@ public class EmplyeeServiceImpl implements EmployeeService {
 
     @Override
     public Page<Employee> searchEmployees(String name, Pageable pageable) {
-        return employeeRepository.findByNameContaining(name, pageable);
+        return employeeRepository.findByNameContainingIgnoreCase(name, pageable);
     }
 
 }
