@@ -4,6 +4,9 @@ import com.fawry.employeeTask.model.Employee;
 import com.fawry.employeeTask.repository.EmployeeRepository;
 import com.fawry.employeeTask.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,13 +28,29 @@ public class EmplyeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> getEmployeeById(Long id) {
-        return this.employeeRepository.findById(id);
+    public Page<Employee> getAllEmployees(Pageable pageable) {
+        return employeeRepository.findAll(pageable);
     }
 
 
     @Override
-    public List<Employee> getEmployeesByCategory(String c) {
-        return this.employeeRepository.findByCategory(c);
+    public Optional<Employee> getEmployeeById(Long id) {
+        return this.employeeRepository.findById(id);
     }
+
+    @Override
+    public List<Employee> getEmployeesByDepartmentId(Long id) {
+        return this.employeeRepository.findByDepartment_Id(id);
+    }
+
+    @Override
+    public void createNewEmployee(String name, Long department_id) {
+        this.employeeRepository.save(new Employee(name,department_id));
+    }
+
+    @Override
+    public Page<Employee> searchEmployees(String name, Pageable pageable) {
+        return employeeRepository.findByNameContaining(name, pageable);
+    }
+
 }

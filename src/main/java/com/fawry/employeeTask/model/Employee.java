@@ -7,25 +7,29 @@ import jakarta.persistence.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    Long id;
     String name;
-    String category;
 
-    public Employee(int id, String name, String category) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-    }
+
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
+
 
     public Employee() {
 
     }
+    public Employee(String name, Long department_id) {
+        this.name = name;
+        this.department = new Department();
+        this.department.setId(department_id);
+    }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,11 +41,11 @@ public class Employee {
         this.name = name;
     }
 
-    public String getCategory() {
-        return category;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
