@@ -13,7 +13,7 @@ public interface EmployeeService {
     public Page<Employee> getAllEmployees(Pageable pageable);
     public Optional<Employee> getEmployeeById(Long id);
     public List<Employee> getEmployeesByDepartmentId(Long id);
-    public void createNewEmployee(String name , Long id);
+    public void createNewEmployee(Employee employee);
     Page<Employee> searchEmployees(String name, Pageable pageable);
 
 

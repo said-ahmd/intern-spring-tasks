@@ -17,7 +17,6 @@ public class EmplyeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
 
-    @Autowired
     public EmplyeeServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
@@ -44,8 +43,8 @@ public class EmplyeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void createNewEmployee(String name, Long department_id) {
-        this.employeeRepository.save(new Employee(name,department_id));
+    public void createNewEmployee(Employee employee) {
+        this.employeeRepository.save(employee);
     }
 
     @Override

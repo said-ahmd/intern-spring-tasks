@@ -13,7 +13,6 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class EmployeeController {
     private EmployeeService employeeService;
-
     EmployeeController(EmployeeService employeeService){
         this.employeeService = employeeService;
     }
@@ -33,8 +32,8 @@ public class EmployeeController {
     }
 
     @PostMapping("create")
-    public void createEmployee(@RequestParam String name, @RequestParam Long departmentId){
-        employeeService.createNewEmployee(name, departmentId);
+    public void createEmployee(@RequestBody Employee employee){
+        employeeService.createNewEmployee(employee);
     }
     @GetMapping("/AllEmployeess")
     public Page<Employee> getAllEmployees(Pageable pageable) {

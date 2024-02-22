@@ -11,7 +11,6 @@ public class Department {
     private Long id;
     private String name;
 
-
     public Department(){}
     public Department(Long id, String departmentName) {
         this.id = id;
@@ -21,15 +20,12 @@ public class Department {
     public String getDepartmentName() {
         return name;
     }
-
     public void setDepartmentName(String departmentName) {
         this.name = departmentName;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public Long getId() {
         return id;
     }
